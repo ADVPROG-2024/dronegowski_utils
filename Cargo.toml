@@ -8,4 +8,4 @@ members = ["crates/*"]
 
 [dependencies]
 wg_2024 = { git = "https://github.com/WGL-2024/WGL_repo_2024.git", features = ["debug", "serialize"] }
-dronegowski_internal = { path = "crates/internal" }
+dronegowski_internal = { path = "crates/dronegowski_internal" }
