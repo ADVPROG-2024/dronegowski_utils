@@ -1,0 +1,7 @@
+[package]
+name = "dronegowski_internal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dronegowski_hosts = { path = "../dronegowski_hosts" }
