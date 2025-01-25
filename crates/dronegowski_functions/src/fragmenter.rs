@@ -19,18 +19,18 @@ pub fn fragment_message<T: Serialize>(
     let mut packets = Vec::new();
 
     for (fragment_index, chunk) in serialized_message.chunks(FRAGMENT_SIZE).enumerate() {
-        // Copy only the actual chunk into the data array
-        let data: Vec<u8> = chunk.to_vec();
+        let mut data = [0u8; FRAGMENT_SIZE];
+        data[..chunk.len()].copy_from_slice(chunk);
 
-        // Create the fragment
+        log::info!("Index: {:?} - Total: {:?}", fragment_index, total_n_fragments);
+
         let fragment = Fragment {
             fragment_index: fragment_index as u64,
             total_n_fragments: total_n_fragments as u64,
-            length: chunk.len() as u8, // Actual length of this chunk
+            length: chunk.len() as u8,
             data,
         };
 
-        // Create the packet
         let packet = Packet {
             pack_type: PacketType::MsgFragment(fragment),
             routing_header: SourceRoutingHeader {
