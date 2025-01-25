@@ -17,3 +17,8 @@ pub enum ClientType {
     WebBrowsers,
     ChatClients,
 }
+
+pub enum ServerType {
+    ContentServer,
+    CommunicationServer
+}
