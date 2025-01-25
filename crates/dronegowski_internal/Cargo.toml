@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 dronegowski_hosts = { path = "../dronegowski_hosts" }
+dronegowski_functions = { path = "../dronegowski_functions" }
+dronegowski_assembler = { path = "../dronegowski_assembler" }

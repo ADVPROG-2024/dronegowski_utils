@@ -11,3 +11,9 @@ pub enum ClientCommand{
     RemoveSender(NodeId), // Rimuove un drone collegato al Client
     AddSender(NodeId, Sender<Packet>), // // Aggiunge un drone collegato al Client
 }
+
+#[derive(Clone, Debug)]
+pub enum ClientType {
+    WebBrowsers,
+    ChatClients,
+}
