@@ -22,6 +22,8 @@ pub fn fragment_message<T: Serialize>(
         let mut data = [0u8; FRAGMENT_SIZE];
         data[..chunk.len()].copy_from_slice(chunk);
 
+        log::info!("Index: {:?} - Total: {:?}", fragment_index, total_n_fragments);
+
         let fragment = Fragment {
             fragment_index: fragment_index as u64,
             total_n_fragments: total_n_fragments as u64,
