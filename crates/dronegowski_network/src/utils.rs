@@ -14,3 +14,5 @@ pub struct SimulationControllerNode {
     pub neighbours: Vec<NodeId>,
     pub xy: (f32, f32),
 }
+
+// diocane
