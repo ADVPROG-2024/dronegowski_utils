@@ -1,9 +1,9 @@
 use serde::Deserialize;
-use wg_2024::packet::{Fragment};
+use wg_2024::packet::Fragment;
 
 pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
     // Calcola gli indici di inizio e fine basati sull'indice del frammento
-    let start_index = fragment.fragment_index as usize * 128;
+    let start_index = fragment.fragment_index as usize * fragment.data.len();
     let end_index = start_index + fragment.data.len();
 
     // Assicurati che il vettore "entry" sia abbastanza grande per contenere il frammento
