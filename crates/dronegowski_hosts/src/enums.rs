@@ -22,21 +22,21 @@ pub enum ClientType {
 
 // Definizione di strutture dati e tipi personalizzati
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct CustomStruct {
-    id: u32,
-    name: String,
-    data: Vec<u8>,
+pub struct CustomStruct {
+    pub id: u32,
+    pub name: String,
+    pub data: Vec<u8>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
-enum CustomEnum {
+pub enum CustomEnum {
     Variant1(String),
     Variant2 { id: u32, value: f64 },
 }
 
 // Enum per rappresentare diversi tipi di messaggi
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
-enum TestMessage {
+pub enum TestMessage {
     Text(String),
     Number(u32),
     Vector(Vec<u8>),
