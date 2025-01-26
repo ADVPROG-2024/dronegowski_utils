@@ -1,6 +1,5 @@
 use serde::Deserialize;
 use wg_2024::packet::Fragment;
-use dronegowski_hosts::TestMessage;
 
 pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
     // Calcola gli indici di inizio e fine basati sull'indice del frammento
@@ -16,8 +15,6 @@ pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
     entry[start_index..end_index].copy_from_slice(&fragment.data);
 }
 
-pub fn deserialize_message<'a, T: Deserialize<'a>>(entry: &'a [u8]) -> Result<TestMessage, bincode::Error> {
-    log::info!("Lunghezza messaggio ricostruito: {}", entry.len());
-    log::info!("Dati del messaggio ricostruito: {:?}", entry);
+pub fn deserialize_message<'a, T: Deserialize<'a>>(entry: &'a [u8]) -> Result<T, bincode::Error> {
     bincode::deserialize(entry)
 }
