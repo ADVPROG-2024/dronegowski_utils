@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 wg_2024 = { git = "https://github.com/WGL-2024/WGL_repo_2024.git", features = ["debug", "serialize"] }
 dronegowski_network = { path = "../dronegowski_network" }
+dronegowski_hosts = { path = "../dronegowski_hosts" }
 simplelog = "^0.12.0"
 bincode = "1.3"
 serde = { version = "1.0.217", features = ["derive"] }
