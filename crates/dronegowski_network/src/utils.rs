@@ -16,7 +16,7 @@ pub struct SimulationControllerNode {
 }
 
 impl SimulationControllerNode {
-    pub fn new(node_type: SimulationControllerNodeType, node_id: NodeId, neighbours: Vec<SimulationControllerNode>, nodi: &mut Vec<SimulationControllerNode>) -> Self {
+    pub fn new(node_type: SimulationControllerNodeType, node_id: NodeId, neighbours: Vec<NodeId>, nodi: &mut Vec<SimulationControllerNode>) -> Self {
         let node = Self {
             node_type,
             node_id,
