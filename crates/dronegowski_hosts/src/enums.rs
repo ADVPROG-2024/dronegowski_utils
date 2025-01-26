@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 
 pub enum ClientEvent{
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
-    MessageReceived(Vec<u8>),  // Avvisa il SC che il messaggio ora è completo
+    MessageReceived(Vec<TestMessage>),  // Avvisa il SC che il messaggio ora è completo
 }
 
 pub enum ClientCommand{
