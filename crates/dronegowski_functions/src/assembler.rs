@@ -16,6 +16,7 @@ pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
 
 pub fn deserialize_message<T: serde::de::DeserializeOwned>(entry: &[u8]) -> Result<T, bincode::Error> {
     // Tenta di deserializzare i dati nel tipo specificato
+    log::info!("Dati del messaggio: {:?}", entry);
     bincode::deserialize(entry)
 }
 
