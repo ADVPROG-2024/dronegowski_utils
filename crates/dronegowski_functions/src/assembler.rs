@@ -1,6 +1,4 @@
-use serde::Serialize;
-use wg_2024::network::NodeId;
-use wg_2024::packet::{Fragment, Packet};
+use wg_2024::packet::{Fragment};
 
 pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
     // Calcola gli indici di inizio e fine basati sull'indice del frammento
