@@ -15,9 +15,8 @@ pub fn assembler(entry: &mut Vec<u8>, fragment: &Fragment) {
     entry[start_index..end_index].copy_from_slice(&fragment.data);
 }
 
-pub fn deserialize_message<T: Deserialize>(entry: &[u8]) -> Result<T, bincode::Error> {
+pub fn deserialize_message<'a, T: Deserialize<'a>>(entry: &'a [u8]) -> Result<T, bincode::Error> {
     // Tenta di deserializzare i dati nel tipo specificato
     log::info!("Dati del messaggio: {:?}", entry);
     bincode::deserialize(entry)
 }
-
