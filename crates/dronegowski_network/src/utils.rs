@@ -1,3 +1,4 @@
+use rand::Rng;
 use wg_2024::network::NodeId;
 
 #[derive(Eq, PartialEq, Debug, Clone)]
