@@ -37,6 +37,7 @@ pub enum ValidationError {
     // Other errors needed can be added here.
 }
 
+
 pub fn validate_network(network: &Vec<SimulationControllerNode>) -> Result<(), ValidationError> {
     let mut graph: HashMap<NodeId, HashSet<NodeId>> = HashMap::new();
 
