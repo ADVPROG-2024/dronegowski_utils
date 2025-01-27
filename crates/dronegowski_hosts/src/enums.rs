@@ -51,7 +51,7 @@ pub enum ClientMessages {
     Media(u64),
     RegistrationToChat,
     ClientList,
-    MessageFor(NodeId, TestMessage)
+    MessageFor(NodeId, String)
 }
 
 // Enum per rappresentare diversi tipi di messaggi
