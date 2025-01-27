@@ -74,10 +74,7 @@ pub enum ServerCommand {
     AddClient(NodeId),
 }
 
-
-
-
 pub enum ServerType {
     ContentServer,
-    CommunicationServer
+    CommunicationServer(Vec<NodeId>)
 }
