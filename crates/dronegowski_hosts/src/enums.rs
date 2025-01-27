@@ -12,6 +12,10 @@ pub enum ClientEvent{
 pub enum ClientCommand{
     RemoveSender(NodeId), // Rimuove un drone collegato al Client
     AddSender(NodeId, Sender<Packet>), // // Aggiunge un drone collegato al Client
+    ClientType,
+    FilesList,
+    File(u64),
+    Media(u64),
 }
 
 #[derive(Clone, Debug)]
@@ -53,6 +57,9 @@ pub enum TestMessage {
     Struct(CustomStruct),
     Enum(CustomEnum),
 }
+
+
+
 
 
 pub enum ServerType {
