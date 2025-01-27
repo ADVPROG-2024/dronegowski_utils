@@ -78,6 +78,7 @@ pub enum ServerCommand {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerType {
-    ContentServer,
+    TextServer(Vec<String>),
+    MediaServer(String),
     CommunicationServer(Vec<NodeId>)
 }
