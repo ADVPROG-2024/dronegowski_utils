@@ -1,9 +1,7 @@
 use std::collections::{HashMap, HashSet};
-use std::fs;
 use std::fs::File;
 use simplelog::{ConfigBuilder, LevelFilter, WriteLogger};
 use thiserror::Error;
-use wg_2024::config::Config;
 use wg_2024::network::NodeId;
 use dronegowski_network::{SimulationControllerNode, SimulationControllerNodeType};
 
@@ -134,62 +132,3 @@ fn dfs(node: NodeId, graph: &HashMap<NodeId, HashSet<NodeId>>, visited: &mut Has
         }
     }
 }
-
-/*pub fn parse_config(file: &str) -> Config {
-    let file_str = fs::read_to_string(file).expect("error reading config file");
-    println!("Parsing configuration file...");
-    toml::from_str(&file_str).expect("Error occurred during config file parsing")
-}
-
-fn parse_file(config: Config,  nodi: &mut Vec<SimulationControllerNode>) {
-
-    for drone in config.drone {
-        let mut neighbours = Vec::new();
-        for neighbour in drone.connected_node_ids {
-            neighbours.push(neighbour);
-        }
-        println!("aggiungo drone {}", drone.id);
-        nodi.push(SimulationControllerNode{
-            node_type: SimulationControllerNodeType::DRONE,
-            node_id: drone.id,
-            neighbours: neighbours,
-            xy: (0.0, 0.0)
-        });
-    }
-
-    for client in config.client {
-        let mut neighbours = Vec::new();
-        for neighbour in client.connected_drone_ids {
-            neighbours.push(neighbour);
-        }
-        nodi.push(SimulationControllerNode{
-            node_type: SimulationControllerNodeType::CLIENT,
-            node_id: client.id,
-            neighbours: neighbours,
-            xy: (0.0, 0.0)
-        });
-    }
-
-    for server in config.server {
-        let mut neighbours = Vec::new();
-        for neighbour in server.connected_drone_ids {
-            neighbours.push(neighbour);
-        }
-        nodi.push(SimulationControllerNode{
-            node_type: SimulationControllerNodeType::SERVER,
-            node_id: server.id,
-            neighbours: neighbours,
-            xy: (0.0, 0.0)
-        });
-    }
-}
-#[test]
-fn test_validate_network() {
-    let mut network = Vec::new();
-    let config = parse_config("config.toml");
-    parse_file(config, &mut network);
-    match validate_network(&network) {
-        Ok(_) => println!("Network validation passed."),
-        Err(e) => println!("Network validation failed: {:?}", e),
-    }
-}*/
