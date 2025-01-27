@@ -9,6 +9,7 @@ pub enum ClientEvent{
     MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
 }
 
+#[derive(Clone, Debug)]
 pub enum ClientCommand{
     RemoveSender(NodeId), // Rimuove un drone collegato al Client
     AddSender(NodeId, Sender<Packet>), // // Aggiunge un drone collegato al Client
@@ -16,6 +17,9 @@ pub enum ClientCommand{
     FilesList(NodeId),
     File(NodeId, u64),
     Media(NodeId, u64),
+    RegistrationToChat(NodeId),
+    ClientList(NodeId),
+    MessageFor(NodeId, NodeId, TestMessage),
 }
 
 #[derive(Clone, Debug)]
@@ -45,6 +49,10 @@ pub enum ClientMessages {
     FilesList,
     File(u64),
     Media(u64),
+    RegistrationToChat,
+    ClientList,
+    MessageFor(NodeId, TestMessage),
+
 }
 
 // Enum per rappresentare diversi tipi di messaggi
