@@ -6,3 +6,6 @@ edition = "2021"
 [dependencies]
 wg_2024 = { git = "https://github.com/WGL-2024/WGL_repo_2024.git", features = ["debug", "serialize"] }
 rand = "0.9.0-beta.3"
+crossbeam-channel = "0.5.14"
+dronegowski_hosts = { path = "../dronegowski_hosts" }
+

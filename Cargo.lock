@@ -90,6 +90,8 @@ dependencies = [
 name = "dronegowski_network"
 version = "0.1.0"
 dependencies = [
+ "crossbeam-channel",
+ "dronegowski_hosts",
  "rand",
  "wg_2024",
 ]

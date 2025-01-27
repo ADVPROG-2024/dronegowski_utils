@@ -1,13 +1,15 @@
-use std::sync::mpsc::Sender;
+use crossbeam_channel::{unbounded, Receiver, Sender};
 use rand::Rng;
 use wg_2024::controller::DroneCommand;
 use wg_2024::network::NodeId;
+use wg_2024::packet::Packet;
+use dronegowski_hosts::ClientCommand;
 
 #[derive(Debug, Clone)]
 pub enum SimulationControllerNodeType {
     SERVER,
-    CLIENT,
-    DRONE,
+    CLIENT {client_channel: Sender<ClientCommand>},
+    DRONE {drone_channel: Sender<DroneCommand>, pdr: f32},
 }
 
 #[derive(Clone)]
@@ -34,8 +36,8 @@ impl SimulationControllerNode {
         let mut x;
         let mut y;
         loop{
-            x = rand::thread_rng().gen_range(50. ..550.);
-            y = rand::thread_rng().gen_range(50. ..550.);
+            x = rand::rng().random_range(50. ..550.);
+            y = rand::rng().random_range(50. ..550.);
             if !nodi.iter().any(|node| {
                 let dist = ((node.xy.0 - x).powi(2) + (node.xy.1 - y).powi(2)).sqrt();
                 dist < 100.}) {
