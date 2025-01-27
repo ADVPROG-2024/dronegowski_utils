@@ -19,7 +19,7 @@ pub enum ClientCommand{
     Media(NodeId, u64),
     RegistrationToChat(NodeId),
     ClientList(NodeId),
-    MessageFor(NodeId, NodeId, TestMessage)
+    MessageFor(NodeId, NodeId, String)
 }
 
 #[derive(Clone, Debug)]
