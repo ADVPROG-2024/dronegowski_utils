@@ -72,7 +72,7 @@ pub enum ServerEvent {
 
 pub enum ServerCommand {
     AddClient(NodeId),
-    SendClients(Vec<NodeId>),
+    SendClients(),
     SendMessage(TestMessage),
 }
 
