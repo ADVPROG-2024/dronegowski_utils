@@ -51,7 +51,7 @@ pub enum ClientMessages {
     Media(u64),
     RegistrationToChat,
     ClientList,
-    MessageFor(NodeId, TestMessage)
+    MessageFor(NodeId, Box<TestMessage>)
 }
 
 // Enum per rappresentare diversi tipi di messaggi
@@ -60,7 +60,7 @@ pub enum TestMessage {
     Text(String),
     Number(u32),
     Vector(Vec<u8>),
-    WebServerMessages(ClientMessages),
+    WebServerMessages(Box<ClientMessages>),
     Struct(CustomStruct),
     Enum(CustomEnum)
 }
