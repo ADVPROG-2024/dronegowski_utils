@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug)]
 pub enum ClientEvent{
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
-    MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
+    MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo
 }
 
 #[derive(Clone, Debug)]
@@ -19,13 +19,13 @@ pub enum ClientCommand{
     Media(NodeId, u64),
     RegistrationToChat(NodeId),
     ClientList(NodeId),
-    MessageFor(NodeId, NodeId, TestMessage),
+    MessageFor(NodeId, NodeId, TestMessage)
 }
 
 #[derive(Clone, Debug)]
 pub enum ClientType {
     WebBrowsers,
-    ChatClients,
+    ChatClients
 }
 
 
@@ -40,7 +40,7 @@ pub struct CustomStruct {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum CustomEnum {
     Variant1(String),
-    Variant2 { id: u32, value: f64 },
+    Variant2 { id: u32, value: f64 }
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -51,7 +51,7 @@ pub enum ClientMessages {
     Media(u64),
     RegistrationToChat,
     ClientList,
-    MessageFor(NodeId, TestMessage),
+    MessageFor(NodeId, Box<TestMessage>)
 }
 
 // Enum per rappresentare diversi tipi di messaggi
@@ -60,14 +60,14 @@ pub enum TestMessage {
     Text(String),
     Number(u32),
     Vector(Vec<u8>),
-    WebServerMessages(ClientMessages),
+    WebServerMessages(Box<ClientMessages>),
     Struct(CustomStruct),
-    Enum(CustomEnum),
+    Enum(CustomEnum)
 }
 
 pub enum ServerEvent {
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
-    MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
+    MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo
 }
 
 pub enum ServerCommand {

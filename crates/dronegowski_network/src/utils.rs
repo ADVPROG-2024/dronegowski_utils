@@ -1,7 +1,9 @@
+use std::sync::mpsc::Sender;
 use rand::Rng;
+use wg_2024::controller::DroneCommand;
 use wg_2024::network::NodeId;
 
-#[derive(Eq, PartialEq, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub enum SimulationControllerNodeType {
     SERVER,
     CLIENT,
