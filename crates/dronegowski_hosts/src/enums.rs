@@ -76,6 +76,7 @@ pub enum ServerCommand {
     SendMessage(NodeId, String),
 }
 
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerType {
     ContentServer,
     CommunicationServer(Vec<NodeId>)
