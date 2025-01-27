@@ -135,7 +135,7 @@ fn dfs(node: NodeId, graph: &HashMap<NodeId, HashSet<NodeId>>, visited: &mut Has
     }
 }
 
-pub fn parse_config(file: &str) -> Config {
+/*pub fn parse_config(file: &str) -> Config {
     let file_str = fs::read_to_string(file).expect("error reading config file");
     println!("Parsing configuration file...");
     toml::from_str(&file_str).expect("Error occurred during config file parsing")
@@ -192,4 +192,4 @@ fn test_validate_network() {
         Ok(_) => println!("Network validation passed."),
         Err(e) => println!("Network validation failed: {:?}", e),
     }
-}
+}*/
