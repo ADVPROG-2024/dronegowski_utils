@@ -50,7 +50,7 @@ pub fn validate_network(network: &Vec<SimulationControllerNode>) -> Result<(), V
                     graph.entry(connected_id).or_default(); // insert the neighbour node in the graph if not there
                 }
             },
-            SimulationControllerNodeType::SERVER => {
+            SimulationControllerNodeType::SERVER { .. } => {
                 if node.neighbours.len() < 2 {
                     return Err(ValidationError::ServerConnectionError);
                 }
