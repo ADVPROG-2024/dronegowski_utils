@@ -58,6 +58,7 @@ name = "dronegowski_functions"
 version = "0.1.0"
 dependencies = [
  "bincode",
+ "dronegowski_hosts",
  "dronegowski_network",
  "log",
  "serde",

@@ -44,6 +44,14 @@ pub enum TestMessage {
     Enum(CustomEnum),
 }
 
+pub enum ServerEvent {
+    PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
+    MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
+}
+
+pub enum ServerCommand {
+    AddClient(NodeId),
+}
 
 pub enum ServerType {
     ContentServer,
