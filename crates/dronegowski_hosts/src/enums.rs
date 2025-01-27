@@ -35,12 +35,21 @@ pub enum CustomEnum {
     Variant2 { id: u32, value: f64 },
 }
 
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub enum ClientMessages {
+    ServerType,
+    FilesList,
+    File(u64),
+    Media(u64),
+}
+
 // Enum per rappresentare diversi tipi di messaggi
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum TestMessage {
     Text(String),
     Number(u32),
     Vector(Vec<u8>),
+    WebServerMessages(ClientMessages),
     Struct(CustomStruct),
     Enum(CustomEnum),
 }
