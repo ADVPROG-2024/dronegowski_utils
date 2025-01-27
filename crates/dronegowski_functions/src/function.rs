@@ -45,7 +45,7 @@ pub fn validate_network(network: &Vec<SimulationControllerNode>) -> Result<(), V
     for node in network {
         println!("aggiungo nodo {}", node.node_id);
         match node.node_type{
-            SimulationControllerNodeType::DRONE => {
+            SimulationControllerNodeType::DRONE { .. } => {
                 graph.entry(node.node_id).or_insert(HashSet::new()).insert(node.node_id);
                 for &connected_id in &node.neighbours {
                     graph.entry(node.node_id).or_default().insert(connected_id);
@@ -59,7 +59,7 @@ pub fn validate_network(network: &Vec<SimulationControllerNode>) -> Result<(), V
                 for &connected_id in &node.neighbours {
                     if let Some(neighbor) = network.iter().find(|neighbor| neighbor.node_id == connected_id) {
                         match neighbor.node_type {
-                            SimulationControllerNodeType::DRONE => {
+                            SimulationControllerNodeType::DRONE { .. } => {
                                 graph.entry(node.node_id).or_default().insert(connected_id);
                                 graph.entry(connected_id).or_default();
                             },
@@ -70,14 +70,14 @@ pub fn validate_network(network: &Vec<SimulationControllerNode>) -> Result<(), V
                     }
                 }
             },
-            SimulationControllerNodeType::CLIENT => {
+            SimulationControllerNodeType::CLIENT { .. } => {
                 if node.neighbours.len() > 2 || node.neighbours.len() < 1 {
                     return Err(ValidationError::ClientConnectionError);
                 }
                 for &connected_id in &node.neighbours {
                     if let Some(neighbor) = network.iter().find(|neighbor| neighbor.node_id == connected_id) {
                         match neighbor.node_type {
-                            SimulationControllerNodeType::DRONE => {
+                            SimulationControllerNodeType::DRONE { .. } => {
                                 graph.entry(node.node_id).or_default().insert(connected_id);
                                 graph.entry(connected_id).or_default();
                             },
