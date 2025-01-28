@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use wg_2024::network::NodeId;
 use wg_2024::packet::Packet;
 use crossbeam_channel::{Sender};
