@@ -78,7 +78,19 @@ pub enum ServerCommand {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerType {
-    TextServer(Vec<String>),
-    MediaServer(String),
+    ContentServer {
+        text: TextServer,
+        media: MediaServer,
+    },
     CommunicationServer(Vec<NodeId>)
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub struct TextServer {
+    pub stored_texts: HashMap<u64, String>, // ID → Testo
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub struct MediaServer {
+    pub stored_media: HashMap<u64, Vec<u8>>, // ID → Media
 }
