@@ -62,6 +62,7 @@ pub enum ServerMessages {
     FilesList(Vec<(u64, String)>),
     File(String),
     Media(Vec<u8>),
+    MessageFrom(NodeId, String)
 }
 
 
