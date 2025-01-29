@@ -37,7 +37,7 @@ impl SimulationControllerNode {
         let mut y;
         loop{
             x = rand::rng().random_range(50. ..1500.);
-            y = rand::rng().random_range(50. ..1000.);
+            y = rand::rng().random_range(50. ..800.);
             if !nodi.iter().any(|node| {
                 let dist = ((node.xy.0 - x).powi(2) + (node.xy.1 - y).powi(2)).sqrt();
                 dist < 200.}) {
