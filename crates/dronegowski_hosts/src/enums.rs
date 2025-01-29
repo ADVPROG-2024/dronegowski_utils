@@ -57,7 +57,7 @@ pub enum ClientMessages {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerMessages {
-    ServerType(String),
+    ServerType(ServerType),
     ClientList(Vec<NodeId>),
     FilesList(Vec<(u64, String)>),
     File(String),
