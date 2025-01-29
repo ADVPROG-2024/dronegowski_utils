@@ -90,6 +90,6 @@ pub enum ServerCommand {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerType {
-    ContentServer,
-    CommunicationServer,
+    Content,
+    Communication,
 }
