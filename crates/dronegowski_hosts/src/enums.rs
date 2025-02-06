@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use wg_2024::network::NodeId;
 use wg_2024::packet::Packet;
 use crossbeam_channel::{Sender};
@@ -15,7 +16,6 @@ pub enum ClientEvent {
     MessageFromReceived(NodeId, NodeId, String), // Specific event for MessageFrom
     RegistrationOk(NodeId),
     RegistrationError(NodeId)
-}
 
 #[derive(Clone, Debug)]
 pub enum ClientCommand{
@@ -27,13 +27,13 @@ pub enum ClientCommand{
     Media(NodeId, u64),
     RegistrationToChat(NodeId),
     ClientList(NodeId),
-    MessageFor(NodeId, NodeId, TestMessage),
+    MessageFor(NodeId, NodeId, String)
 }
 
 #[derive(Clone, Debug)]
 pub enum ClientType {
     WebBrowsers,
-    ChatClients,
+    ChatClients
 }
 
 
@@ -48,7 +48,7 @@ pub struct CustomStruct {
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum CustomEnum {
     Variant1(String),
-    Variant2 { id: u32, value: f64 },
+    Variant2 { id: u32, value: f64 }
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -59,8 +59,19 @@ pub enum ClientMessages {
     Media(u64),
     RegistrationToChat,
     ClientList,
-    MessageFor(NodeId, TestMessage),
+    MessageFor(NodeId, String)
 }
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub enum ServerMessages {
+    ServerType(ServerType),
+    ClientList(Vec<NodeId>),
+    FilesList(Vec<(u64, String)>),
+    File(String),
+    Media(Vec<u8>),
+    MessageFrom(NodeId, String)
+}
+
 
 // Enum per rappresentare diversi tipi di messaggi
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -70,14 +81,22 @@ pub enum TestMessage {
     Vector(Vec<u8>),
     WebServerMessages(ClientMessages),
     Struct(CustomStruct),
-    Enum(CustomEnum),
+    Enum(CustomEnum)
 }
 
+pub enum ServerEvent {
+    PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
+    MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo
+}
 
+pub enum ServerCommand {
+    AddClient(NodeId),
+    SendClients(NodeId),
+    SendMessage(NodeId, String),
+}
 
-
-
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerType {
-    ContentServer,
-    CommunicationServer
+    Content,
+    Communication,
 }
