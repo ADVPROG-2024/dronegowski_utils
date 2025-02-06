@@ -15,7 +15,8 @@ pub enum ClientEvent {
     MediaReceived(NodeId, Vec<u8>), // Specific event for Media
     MessageFromReceived(NodeId, NodeId, String), // Specific event for MessageFrom
     RegistrationOk(NodeId),
-    RegistrationError(NodeId)
+    RegistrationError(NodeId),
+}
 
 #[derive(Clone, Debug)]
 pub enum ClientCommand{
@@ -69,7 +70,9 @@ pub enum ServerMessages {
     FilesList(Vec<(u64, String)>),
     File(String),
     Media(Vec<u8>),
-    MessageFrom(NodeId, String)
+    MessageFrom(NodeId, String),
+    RegistrationOk,
+    RegistrationError(String),
 }
 
 
