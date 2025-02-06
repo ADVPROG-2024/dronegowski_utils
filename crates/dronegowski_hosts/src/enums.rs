@@ -60,7 +60,8 @@ pub enum ClientMessages {
     Media(u64),
     RegistrationToChat,
     ClientList,
-    MessageFor(NodeId, String)
+    MessageFor(NodeId, String),
+    ServerMessages(ServerMessages),
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
