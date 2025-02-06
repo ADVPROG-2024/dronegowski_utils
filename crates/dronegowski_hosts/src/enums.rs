@@ -94,6 +94,8 @@ pub enum ServerEvent {
 }
 
 pub enum ServerCommand {
+    AddSender(NodeId, Sender<Packet>),
+    RemoveSender(NodeId),
     AddClient(NodeId),
     SendClients(NodeId),
     SendMessage(NodeId, String),
