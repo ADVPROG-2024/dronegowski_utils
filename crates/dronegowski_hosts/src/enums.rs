@@ -4,9 +4,17 @@ use crossbeam_channel::{Sender};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug)]
-pub enum ClientEvent{
-    PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
-    MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
+pub enum ClientEvent {
+    PacketSent(Packet),
+    MessageReceived(TestMessage), // Keep this for generic messages
+    ServerTypeReceived(NodeId, ServerType), // Specific event for ServerType
+    ClientListReceived(NodeId, Vec<NodeId>), // Specific event for ClientList
+    FilesListReceived(NodeId, Vec<(u64, String)>), // Specific event for FilesList
+    FileReceived(NodeId, String), // Specific event for a File
+    MediaReceived(NodeId, Vec<u8>), // Specific event for Media
+    MessageFromReceived(NodeId, NodeId, String), // Specific event for MessageFrom
+    RegistrationOk(NodeId),
+    RegistrationError(NodeId)
 }
 
 #[derive(Clone, Debug)]
