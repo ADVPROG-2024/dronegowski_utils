@@ -66,6 +66,7 @@ pub enum ClientMessages {
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub struct FileContent {
+    pub title: String,
     pub text: String,
     pub media_ids: Vec<(u64, String)>,
 }
