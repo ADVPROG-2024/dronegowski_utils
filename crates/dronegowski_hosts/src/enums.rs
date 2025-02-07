@@ -27,7 +27,7 @@ pub enum ClientCommand{
     Media(NodeId, u64),
     RegistrationToChat(NodeId),
     ClientList(NodeId),
-    MessageFor(NodeId, NodeId, String)
+    MessageFor(NodeId, NodeId, String),
     RequestNetworkDiscovery,
 }
 
