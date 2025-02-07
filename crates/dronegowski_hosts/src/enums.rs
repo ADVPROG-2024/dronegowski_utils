@@ -28,6 +28,7 @@ pub enum ClientCommand{
     RegistrationToChat(NodeId),
     ClientList(NodeId),
     MessageFor(NodeId, NodeId, String)
+    RequestNetworkDiscovery,
 }
 
 #[derive(Clone, Debug)]
