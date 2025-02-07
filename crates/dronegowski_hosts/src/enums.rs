@@ -65,11 +65,17 @@ pub enum ClientMessages {
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
+pub struct FileContent {
+    pub text: String,
+    pub media_ids: Vec<(u64, String)>,
+}
+
+#[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
 pub enum ServerMessages {
     ServerType(ServerType),
     ClientList(Vec<NodeId>),
     FilesList(Vec<(u64, String)>),
-    File(String),
+    File(FileContent),
     Media(Vec<u8>),
     Error(String),
     MessageFrom(NodeId, String),
