@@ -7,14 +7,14 @@ use serde::{Deserialize, Serialize};
 pub enum ClientEvent {
     PacketSent(Packet),
     MessageReceived(TestMessage), // Keep this for generic messages
-    ServerTypeReceived(NodeId, ServerType), // Specific event for ServerType
-    ClientListReceived(NodeId, Vec<NodeId>), // Specific event for ClientList
-    FilesListReceived(NodeId, Vec<(u64, String)>), // Specific event for FilesList
-    FileReceived(NodeId, String), // Specific event for a File
-    MediaReceived(NodeId, Vec<u8>), // Specific event for Media
-    MessageFromReceived(NodeId, NodeId, String), // Specific event for MessageFrom
-    RegistrationOk(NodeId),
-    RegistrationError(NodeId),
+    ServerTypeReceived(NodeId, NodeId, ServerType), // Specific event for ServerType
+    ClientListReceived(NodeId, NodeId, Vec<NodeId>), // Specific event for ClientList
+    FilesListReceived(NodeId, NodeId, Vec<(u64, String)>), // Specific event for FilesList
+    FileReceived(NodeId, NodeId, String), // Specific event for a File
+    MediaReceived(NodeId, NodeId, Vec<u8>), // Specific event for Media
+    MessageFromReceived(NodeId, NodeId, NodeId, String), // Specific event for MessageFrom
+    RegistrationOk(NodeId, NodeId),
+    RegistrationError(NodeId, NodeId),
 }
 
 #[derive(Clone, Debug)]
