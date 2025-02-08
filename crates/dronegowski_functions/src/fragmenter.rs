@@ -32,7 +32,7 @@ pub fn fragment_message<T: Serialize>(
         let packet = Packet {
             pack_type: PacketType::MsgFragment(fragment),
             routing_header: SourceRoutingHeader {
-                hop_index: 0,
+                hop_index: 1,
                 hops: hops.clone(),
             },
             session_id,
