@@ -92,6 +92,7 @@ pub enum TestMessage {
     Number(u32),
     Vector(Vec<u8>),
     WebServerMessages(ClientMessages),
+    WebClientMessages(ServerMessages),
     Struct(CustomStruct),
     Enum(CustomEnum)
 }
