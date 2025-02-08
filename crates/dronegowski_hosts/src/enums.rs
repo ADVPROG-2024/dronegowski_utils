@@ -102,6 +102,7 @@ pub enum ServerEvent {
     MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo
 }
 
+#[derive(Clone, Debug)]
 pub enum ServerCommand {
     AddSender(NodeId, Sender<Packet>),
     RemoveSender(NodeId),
