@@ -15,7 +15,7 @@ pub enum ClientEvent {
     MessageFromReceived(NodeId, NodeId, NodeId, String), // Specific event for MessageFrom
     RegistrationOk(NodeId, NodeId),
     RegistrationError(NodeId, NodeId),
-    Error(NodeId, NodeId, String), // Generic error
+    Error(NodeId, String), // Generic error
 }
 
 #[derive(Clone, Debug)]
