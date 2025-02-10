@@ -30,6 +30,7 @@ pub enum ClientCommand{
     ClientList(NodeId),
     MessageFor(NodeId, NodeId, String),
     RequestNetworkDiscovery,
+    ControllerShortcut(Packet),
 }
 
 #[derive(Clone, Debug)]
@@ -111,6 +112,7 @@ pub enum ServerCommand {
     AddClient(NodeId),
     SendClients(NodeId),
     SendMessage(NodeId, String),
+    ControllerShortcut(Packet),
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
