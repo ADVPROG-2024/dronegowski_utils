@@ -7,7 +7,7 @@ use dronegowski_hosts::{ClientCommand, ClientType, ServerCommand};
 
 #[derive(Debug, Clone)]
 pub enum SimulationControllerNodeType {
-    SERVER {server_channel: Sender<ServerCommand>},
+    SERVER {server_channel: Sender<ServerCommand>, server_type: ServerType},
     CLIENT {client_channel: Sender<ClientCommand>, client_type: ClientType},
     DRONE {drone_channel: Sender<DroneCommand>, pdr: f32},
 }
