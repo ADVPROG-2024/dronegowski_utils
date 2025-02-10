@@ -18,6 +18,7 @@ pub struct SimulationControllerNode {
     pub node_id: NodeId,
     pub neighbours: Vec<NodeId>,
     pub xy: (f32, f32),
+    pub active_popup: bool
 }
 
 impl SimulationControllerNode {
@@ -27,6 +28,7 @@ impl SimulationControllerNode {
             node_id,
             neighbours,
             xy: Self::set_coordinates(nodi),
+            active_popup: false,
         };
         nodi.push(node.clone());
         node
