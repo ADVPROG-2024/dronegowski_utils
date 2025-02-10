@@ -10,7 +10,7 @@ pub enum ClientEvent {
     ServerTypeReceived(NodeId, NodeId, ServerType), // Specific event for ServerType
     ClientListReceived(NodeId, NodeId, Vec<NodeId>), // Specific event for ClientList
     FilesListReceived(NodeId, NodeId, Vec<(u64, String)>), // Specific event for FilesList
-    FileReceived(NodeId, NodeId, String), // Specific event for a File
+    FileReceived(NodeId, NodeId, FileContent), // Specific event for a File
     MediaReceived(NodeId, NodeId, Vec<u8>), // Specific event for Media
     MessageFromReceived(NodeId, NodeId, NodeId, String), // Specific event for MessageFrom
     RegistrationOk(NodeId, NodeId),
