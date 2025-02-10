@@ -3,7 +3,7 @@ use rand::Rng;
 use wg_2024::controller::DroneCommand;
 use wg_2024::network::NodeId;
 use wg_2024::packet::Packet;
-use dronegowski_hosts::{ClientCommand, ClientType, ServerCommand};
+use dronegowski_hosts::{ClientCommand, ClientType, ServerCommand, ServerType};
 
 #[derive(Debug, Clone)]
 pub enum SimulationControllerNodeType {
