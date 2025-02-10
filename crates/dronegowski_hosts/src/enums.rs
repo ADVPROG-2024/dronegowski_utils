@@ -13,6 +13,8 @@ pub enum ClientEvent {
     FileReceived(NodeId, NodeId, String), // Specific event for a File
     MediaReceived(NodeId, NodeId, Vec<u8>), // Specific event for Media
     MessageFromReceived(NodeId, NodeId, NodeId, String), // Specific event for MessageFrom
+    RegistrationOk(NodeId, NodeId),
+    RegistrationError(NodeId, NodeId),
     Error(NodeId, NodeId, String), // Generic error
 }
 
