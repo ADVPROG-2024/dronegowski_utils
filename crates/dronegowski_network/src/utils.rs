@@ -1,3 +1,4 @@
+use std::collections::{HashMap, HashSet};
 use crossbeam_channel::{unbounded, Receiver, Sender};
 use rand::Rng;
 use wg_2024::controller::{DroneCommand, DroneEvent};
@@ -26,7 +27,7 @@ pub struct SimulationControllerNode {
     pub neighbours: Vec<NodeId>,
     pub xy: (f32, f32),
     pub details: bool,
-    pub event: Vec<Event>,
+    pub event: HashSet<Event>,
 }
 
 impl SimulationControllerNode {
@@ -37,7 +38,7 @@ impl SimulationControllerNode {
             neighbours,
             xy: Self::set_coordinates(nodi),
             details: false,
-            event: Vec::new(),
+            event: HashSet::new(),
         };
         nodi.push(node.clone());
         node
