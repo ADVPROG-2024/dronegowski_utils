@@ -3,7 +3,7 @@ use wg_2024::packet::Packet;
 use crossbeam_channel::{Sender};
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum ClientEvent {
     PacketSent(Packet),
     MessageReceived(TestMessage), // Keep this for generic messages
@@ -99,7 +99,7 @@ pub enum TestMessage {
     Enum(CustomEnum)
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum ServerEvent {
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
     MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo

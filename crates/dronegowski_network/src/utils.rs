@@ -6,7 +6,7 @@ use wg_2024::network::NodeId;
 use wg_2024::packet::Packet;
 use dronegowski_hosts::{ClientCommand, ClientEvent, ClientType, ServerCommand, ServerEvent, ServerType};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Event {
     ClientEvent(ClientEvent),
     ServerEvent(ServerEvent),
