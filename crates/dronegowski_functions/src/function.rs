@@ -4,6 +4,8 @@ use simplelog::{ConfigBuilder, LevelFilter, WriteLogger};
 use thiserror::Error;
 use wg_2024::network::NodeId;
 use dronegowski_network::{SimulationControllerNode, SimulationControllerNodeType};
+use fern;
+use std::env;
 
 pub fn generate_unique_id() -> u64 {
     use std::time::{SystemTime, UNIX_EPOCH};
@@ -131,4 +133,63 @@ fn dfs(node: NodeId, graph: &HashMap<NodeId, HashSet<NodeId>>, visited: &mut Has
             dfs(neighbor, graph, visited);
         }
     }
+}
+
+pub fn setup_logging() {
+    let client_filter = env::var("CLIENT_FILTER").unwrap_or_default();
+    let drone_filter = env::var("DRONE_FILTER").unwrap_or_default();
+    let server_filter = env::var("SERVER_FILTER").unwrap_or_default();
+
+    fern::Dispatch::new()
+        .format(|out, message, record| {
+            out.finish(format_args!(
+                "[{}][{}] {}",
+                record.target(),
+                record.level(),
+                message
+            ))
+        })
+        .level(log::LevelFilter::Info)
+        .filter(move |metadata| {
+            let target = metadata.target();
+            
+            // Client filter
+            client_filter.split(',')
+                .any(|f| target.starts_with(&format!("client_{}", f))) ||
+            
+            // Drone filter
+            drone_filter.split(',')
+                .any(|f| target.starts_with(&format!("drone_{}", f))) ||
+            
+            // Server filter
+            server_filter.split(',')
+                .any(|f| target.starts_with(&format!("server_{}", f)))
+        })
+        .chain(fern::log_file("output.log").unwrap())
+        .apply()
+        .unwrap();
+}
+
+pub fn enable_debug_for(target_type: &str, ids: &[u64]) {
+    let filter_var = match target_type {
+        "client" => "CLIENT_FILTER",
+        "drone" => "DRONE_FILTER",
+        "server" => "SERVER_FILTER",
+        _ => return
+    };
+    
+    let existing = env::var(filter_var).unwrap_or_default();
+    let new_filter = if !existing.is_empty() {
+        format!("{},{}", existing, ids.iter().map(|id| id.to_string()).collect::<Vec<_>>().join(","))
+    } else {
+        ids.iter().map(|id| id.to_string()).collect::<Vec<_>>().join(",")
+    };
+    
+    env::set_var(filter_var, new_filter);
+}
+
+pub fn disable_debug() {
+    env::remove_var("CLIENT_FILTER");
+    env::remove_var("DRONE_FILTER");
+    env::remove_var("SERVER_FILTER");
 }
