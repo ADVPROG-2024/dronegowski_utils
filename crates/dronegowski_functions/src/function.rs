@@ -149,7 +149,7 @@ pub fn setup_logging() {
                 message
             ))
         })
-        .level(log::LevelFilter::Info)
+        .level(LevelFilter::Info)
         .filter(move |metadata| {
             let target = metadata.target();
             

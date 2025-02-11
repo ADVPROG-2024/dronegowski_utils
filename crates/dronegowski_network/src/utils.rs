@@ -1,9 +1,7 @@
-use std::collections::{HashMap, HashSet};
-use crossbeam_channel::{unbounded, Receiver, Sender};
+use crossbeam_channel::{Sender};
 use rand::Rng;
 use wg_2024::controller::{DroneCommand, DroneEvent};
 use wg_2024::network::NodeId;
-use wg_2024::packet::Packet;
 use dronegowski_hosts::{ClientCommand, ClientEvent, ClientType, ServerCommand, ServerEvent, ServerType};
 
 #[derive(Debug, Clone, PartialEq)]
