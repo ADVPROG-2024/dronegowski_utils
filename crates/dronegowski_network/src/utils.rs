@@ -27,7 +27,7 @@ pub struct SimulationControllerNode {
     pub neighbours: Vec<NodeId>,
     pub xy: (f32, f32),
     pub details: bool,
-    pub event: HashSet<Event>,
+    pub event: Vec<Event>,
 }
 
 impl SimulationControllerNode {
@@ -38,7 +38,7 @@ impl SimulationControllerNode {
             neighbours,
             xy: Self::set_coordinates(nodi),
             details: false,
-            event: HashSet::new(),
+            event: Vec::new(),
         };
         nodi.push(node.clone());
         node
