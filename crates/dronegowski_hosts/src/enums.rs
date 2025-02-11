@@ -103,7 +103,7 @@ pub enum TestMessage {
 pub enum ServerEvent {
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
     MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
-    Error(NodeId, String),
+    Error(NodeId, NodeId, String),
 }
 
 #[derive(Clone, Debug)]
