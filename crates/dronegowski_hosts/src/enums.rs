@@ -102,7 +102,8 @@ pub enum TestMessage {
 #[derive(Clone, Debug, PartialEq)]
 pub enum ServerEvent {
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
-    MessageReceived(TestMessage)  // Avvisa il SC che il messaggio ora è completo
+    MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
+    Error(NodeId, String),
 }
 
 #[derive(Clone, Debug)]
