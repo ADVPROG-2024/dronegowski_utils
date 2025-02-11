@@ -1,13 +1,20 @@
 use crossbeam_channel::{unbounded, Receiver, Sender};
 use rand::Rng;
-use wg_2024::controller::DroneCommand;
+use wg_2024::controller::{DroneCommand, DroneEvent};
 use wg_2024::network::NodeId;
 use wg_2024::packet::Packet;
-use dronegowski_hosts::{ClientCommand, ClientType, ServerCommand};
+use dronegowski_hosts::{ClientCommand, ClientEvent, ClientType, ServerCommand, ServerEvent, ServerType};
+
+#[derive(Debug, Clone)]
+pub enum Event {
+    ClientEvent(ClientEvent),
+    ServerEvent(ServerEvent),
+    DroneEvent(DroneEvent),
+}
 
 #[derive(Debug, Clone)]
 pub enum SimulationControllerNodeType {
-    SERVER {server_channel: Sender<ServerCommand>},
+    SERVER {server_channel: Sender<ServerCommand>, server_type: ServerType},
     CLIENT {client_channel: Sender<ClientCommand>, client_type: ClientType},
     DRONE {drone_channel: Sender<DroneCommand>, pdr: f32},
 }
@@ -18,7 +25,8 @@ pub struct SimulationControllerNode {
     pub node_id: NodeId,
     pub neighbours: Vec<NodeId>,
     pub xy: (f32, f32),
-    pub details: bool
+    pub details: bool,
+    pub event: Vec<Event>,
 }
 
 impl SimulationControllerNode {
@@ -29,6 +37,7 @@ impl SimulationControllerNode {
             neighbours,
             xy: Self::set_coordinates(nodi),
             details: false,
+            event: Vec::new(),
         };
         nodi.push(node.clone());
         node
