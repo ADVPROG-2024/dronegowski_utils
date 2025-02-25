@@ -16,6 +16,7 @@ pub enum ClientEvent {
     RegistrationOk(NodeId, NodeId),
     RegistrationError(NodeId, NodeId),
     Error(NodeId, String), // Generic error
+    Route(Vec<NodeId>), // route evaluated before sending
 }
 
 #[derive(Clone, Debug)]
@@ -104,6 +105,7 @@ pub enum ServerEvent {
     PacketSent(Packet), // Avvisa il SC che è stato inviato un pacchetto
     MessageReceived(TestMessage),  // Avvisa il SC che il messaggio ora è completo
     Error(NodeId, NodeId, String),
+    Route(Vec<NodeId>), // route evaluated before sending
 }
 
 #[derive(Clone, Debug)]
