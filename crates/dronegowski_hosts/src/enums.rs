@@ -116,6 +116,7 @@ pub enum ServerCommand {
     SendClients(NodeId),
     SendMessage(NodeId, String),
     ControllerShortcut(Packet),
+    RequestNetworkDiscovery,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
