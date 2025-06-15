@@ -16,6 +16,7 @@ pub enum ClientEvent {
     RegistrationOk(NodeId, NodeId),
     RegistrationError(NodeId, NodeId),
     Error(NodeId, String), // Generic error
+    ErrorMessage(NodeId, String),
     Route(Vec<NodeId>), // route evaluated before sending
 }
 
