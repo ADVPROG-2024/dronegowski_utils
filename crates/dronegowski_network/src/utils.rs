@@ -15,7 +15,7 @@ pub enum Event {
 pub enum SimulationControllerNodeType {
     SERVER {server_channel: Sender<ServerCommand>, server_type: ServerType},
     CLIENT {client_channel: Sender<ClientCommand>, client_type: ClientType},
-    DRONE {drone_channel: Sender<DroneCommand>, pdr: f32},
+    DRONE {drone_channel: Sender<DroneCommand>, pdr: f32, drone_type: String},
 }
 
 #[derive(Clone)]
